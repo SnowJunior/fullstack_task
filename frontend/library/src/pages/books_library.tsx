@@ -11,6 +11,7 @@ import "./books_library.scss";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import SearchQuery from "../components/Input/text_input";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const BookLibrary = () => {
   const { data, loading } = useQuery(GET_BOOKS);
@@ -20,17 +21,30 @@ const BookLibrary = () => {
   const [removeBookFromList] = useMutation(REMOVE_BOOK_FROM_LIST);
 
   const handleAddToReadingList = (book: BookModel) => {
-    addBookToList({
-      variables: { author: book.author },
-      refetchQueries: [{ query: GET_BOOKS }],
-    });
+    try {
+      addBookToList({
+        variables: { author: book.author },
+        refetchQueries: [{ query: GET_READING_LIST }],
+      });
+      toast.success("Added Book Successfully");
+    } catch (error) {
+      throw new Error(`${error}`);
+      toast.error("Failed to add book");
+    }
   };
 
   const handleRemoveFromReadingList = (book: BookModel) => {
-    removeBookFromList({
-      variables: { author: book.author },
-      refetchQueries: [{ query: GET_BOOKS }],
-    });
+    try {
+      removeBookFromList({
+        variables: { author: book.author },
+        refetchQueries: [{ query: GET_READING_LIST }],
+      });
+      toast.success('Book removed successfully')
+    } catch (error) {
+      throw new Error(`${error}`)
+      toast.error('Could not remove book')
+    }
+
   };
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
