@@ -9,9 +9,9 @@ import {
 import { BookModel } from "../models";
 import "./books_library.scss";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import SearchQuery from "../components/Input/text_input";
+// import SearchQuery from "../components/Input/text_input";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { showToast } from "../hooks/useToast";
 
 const BookLibrary = () => {
   const { data, loading } = useQuery(GET_BOOKS);
@@ -22,14 +22,20 @@ const BookLibrary = () => {
 
   const handleAddToReadingList = (book: BookModel) => {
     try {
+      if (
+        addedBooks.readingList.some((b: BookModel) => b.author == book.author)
+      ) {
+        showToast("warn", "Book is already added to reading list");
+        return;
+      }
       addBookToList({
         variables: { author: book.author },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
-      toast.success("Added Book Successfully");
+      showToast("success", "Added Book Successfully");
     } catch (error) {
+      showToast("error", "Failed to add book");
       throw new Error(`${error}`);
-      toast.error("Failed to add book");
     }
   };
 
@@ -39,12 +45,11 @@ const BookLibrary = () => {
         variables: { author: book.author },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
-      toast.success('Book removed successfully')
+      showToast("success", "Book removed successfully");
     } catch (error) {
-      throw new Error(`${error}`)
-      toast.error('Could not remove book')
+      showToast("error", "Could not remove book");
+      throw new Error(`${error}`);
     }
-
   };
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
@@ -63,9 +68,9 @@ const BookLibrary = () => {
       flexDirection={"column"}
       gap={"4rem"}
     >
-      <Box>
+      {/* <Box>
         <SearchQuery />
-      </Box>
+      </Box> */}
 
       <Box>
         <ToggleButtonGroup
