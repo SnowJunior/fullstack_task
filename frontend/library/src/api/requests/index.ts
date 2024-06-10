@@ -23,8 +23,8 @@ export const BOOKS_QUERY = gql`
 `;
 
 export const ADD_BOOK_TO_LIST = gql`
-  mutation AddBookToList($author: String!) {
-    addBookToList(author: $author) {
+  mutation AddBookToList($author: String!, $title: String!) {
+    addBookToList(author: $author, title: $title) {
       title
       author
       coverPhotoURL
@@ -34,8 +34,8 @@ export const ADD_BOOK_TO_LIST = gql`
 `;
 
 export const REMOVE_BOOK_FROM_LIST = gql`
-  mutation RemoveBookFromList($author: String!) {
-    removeBookFromList(author: $author) {
+  mutation RemoveBookFromList($author: String!, $title: String!) {
+    removeBookFromList(author: $author, title: $title) {
       title
       author
       coverPhotoURL

@@ -32,7 +32,7 @@ const BookLibrary = () => {
         return;
       }
       await addBookToList({
-        variables: { author: book.author },
+        variables: { author: book.author, title: book.title },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
       showToast("success", "Added Book Successfully");
@@ -45,7 +45,7 @@ const BookLibrary = () => {
   const handleRemoveFromReadingList = async (book: BookModel) => {
     try {
       await removeBookFromList({
-        variables: { author: book.author },
+        variables: { author: book.author, title: book.title },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
       showToast("success", "Book removed successfully");

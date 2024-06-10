@@ -8,15 +8,15 @@ export const resolvers = {
     readingList: () => readingList,
   },
   Mutation: {
-    addBookToList: (_: never, { author }: {author: string}): Book[] => {
-      const book = booksData.find((b) => b.author === author);
-      if (book && !readingList.find((b) => b.author === author)) {
+    addBookToList: (_: never, { author, title }: {author: string, title: string}): Book[] => {
+      const book = booksData.find((b) => b.author === author && b.title === title);
+      if (book && !readingList.find((b) => b.author === author && b.title === title)) {
         readingList.push(book);
       }
       return readingList;
     },
-    removeBookFromList: (_: never,{ author }: {author: string}): Book[] => {
-      const index = readingList.findIndex((b) => b.author === author);
+    removeBookFromList: (_: never,{ author, title }: {author: string, title: string}): Book[] => {
+      const index = readingList.findIndex((b) => b.author === author && b.title === title);
       if (index !== -1) {
         readingList.splice(index, 1);
       }
