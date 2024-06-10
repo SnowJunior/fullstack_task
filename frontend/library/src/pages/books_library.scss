@@ -1,0 +1,24 @@
+.books_container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-evenly;
+}
+
+@media (max-width: 1200px) {
+  .books_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .books_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .books_container {
+    grid-template-columns: 1fr;
+  }
+}
