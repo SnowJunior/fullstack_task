@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { createTheme } from "@mui/material/styles";
 import React from "react";
-import { deepOrange, grey } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 const useColorMode = () => {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -25,7 +25,7 @@ const useColorMode = () => {
         palette: {
           mode,
           background: {
-            default: mode === "light" ? deepOrange[900] : grey[900],
+            default: grey[50],
           },
         },
       }),

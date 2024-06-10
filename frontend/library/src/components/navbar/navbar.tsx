@@ -1,17 +1,16 @@
-import { Box, Switch } from "@mui/material";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { Box } from "@mui/material";
+// import LightModeIcon from "@mui/icons-material/LightMode";
+// import DarkModeIcon from "@mui/icons-material/DarkMode";
 import "./navbar.scss";
-import { deepOrange } from "@mui/material/colors";
-import useColorMode from "../../hooks/useTheme";
+// import { deepOrange } from "@mui/material/colors";
+// import useColorMode from "../../hooks/useTheme";
 
 const Navbar = () => {
-  const { toggleColorMode, mode } = useColorMode();
+  // const { toggleColorMode, mode } = useColorMode();
   return (
     <>
       <Box
         height={"100px"}
-        bgcolor={"blue"}
         width={"95%"}
         mx={"auto"}
         display={"flex"}
@@ -24,7 +23,7 @@ const Navbar = () => {
           alt=""
           className="navbar_image"
         />
-        <Switch
+        {/* <Switch
           icon={
             mode === "dark" ? (
               <LightModeIcon sx={{ color: deepOrange }} />
@@ -33,7 +32,7 @@ const Navbar = () => {
             )
           }
           onChange={toggleColorMode}
-        />
+        /> */}
       </Box>
     </>
   );
