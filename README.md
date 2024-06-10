@@ -20,7 +20,12 @@ https://www.loom.com/share/968d0f9588e04458a96b3dee109a0244?sid=e1534ec2-3b16-46
 
 
 ### Organization
-I have followed a personal approach that allows me to achieve the best solution. I separated the data layer from the UI layer. The UI layer interacts with the data layer using hooks that allow for the fetching of data and creation of items. In the frontend I have the following files: 
+I have followed a personal approach that allows me to achieve the best solution. I separated the data layer from the UI layer. The UI layer interacts with the data layer using hooks that allow for the fetching of data and creation of items.
+
+Detailed description of the organization 
+https://www.loom.com/share/90f7f1368d8e4d88a63c26cc958d9469?sid=a02d6746-761f-447e-841b-9c7fe8a0d9ea
+
+In the frontend I have the following files: 
 - Api - This handle the setup of Apollo client and the client actions i.e: all queries and mutations
 - App - This contains the app file
 - Components - This contains all the reusable components i.e the book_item, buttons and input elements
