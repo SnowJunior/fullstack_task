@@ -1,35 +1,83 @@
 import { BookModel } from "../../models";
 import {
-  Button,
+  Box,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@mui/material";
+import "./book_item.scss";
+import { AssignButton, RemoveButton } from "../shared/button";
 
 const BookItem = ({ book }: { book: BookModel }) => {
   return (
-    <Card
-      sx={{ maxWidth: 345, backgroundColor: "white", borderRadius: "20px" }}
-    >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/image2.webp"
-        title="jambo junior"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {book.title}
-        </Typography>
-        <Typography gutterBottom variant="body2" component="div">
-          by {book.author}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button>Assign</Button>
-      </CardActions>
-    </Card>
+    <div className="card_wrapper">
+      <Card
+        sx={{
+          maxWidth: 400,
+          height: 320,
+          backgroundColor: "white",
+          borderRadius: "20px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "start",
+          alignItems: "start",
+        }}
+      >
+        <CardMedia
+          sx={{ height: 150 }}
+          image={"../../image1.webp"}
+          title={book.title}
+        />
+        <div className="card_details">
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {book.title}
+            </Typography>
+            <Box
+              display={"flex"}
+              flexDirection={"row"}
+              justifyContent={"space-between"}
+              width={"100%"}
+            >
+              <Typography gutterBottom variant="body2" component="div">
+                by {book.author}
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="body2"
+                component="div"
+                color={"#FABD33"}
+                fontSize={"16px"}
+              >
+                Level {book.readingLevel}
+              </Typography>
+            </Box>
+          </CardContent>
+          <CardActions>
+            <div className="action_buttons">
+              <AssignButton
+                sx={{ width: "100%", padding: "10px", fontSize: "14px" }}
+                onClick={book.addBook}
+              >
+                Assign
+              </AssignButton>
+              {book.isAllBooks ? (
+                ""
+              ) : (
+                <RemoveButton
+                  sx={{ width: "100%", padding: "10px", fontSize: "14px" }}
+                  onClick={book.removeBook}
+                >
+                  Remove
+                </RemoveButton>
+              )}
+            </div>
+          </CardActions>
+        </div>
+      </Card>
+    </div>
   );
 };
 

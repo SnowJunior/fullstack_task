@@ -1,0 +1,17 @@
+.card_wrapper {
+  font-family: "Mulish", sans-serif;
+}
+
+.card_details {
+  padding: 5px;
+}
+
+.action_buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
