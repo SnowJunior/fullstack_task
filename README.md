@@ -16,7 +16,7 @@ All assessment requirements were met and completed. These include:
 
 ## Video Link
 As the completed solution below is the link of a small demo of the process and the application solution and output that was created
-[here](https://www.loom.com/share/968d0f9588e04458a96b3dee109a0244?sid=e1534ec2-3b16-4638-8cdf-b3c44b66f5ff)
+https://www.loom.com/share/968d0f9588e04458a96b3dee109a0244?sid=e1534ec2-3b16-4638-8cdf-b3c44b66f5ff
 
 
 ### Organization
