@@ -26,8 +26,8 @@ const BookItem = ({ book }: { book: BookModel }) => {
         }}
       >
         <CardMedia
-          sx={{ height: 150 }}
-          image={"../../image1.webp"}
+          sx={{ height: 200, width: '100%' }}
+          image={book.coverPhotoURL}
           title={book.title}
         />
         <div className="card_details">
