@@ -1,6 +1,16 @@
 export type BookModel = {
-  title: string
-  author: string
-  readingLevel: string
-  coverPhotoURL: string
-}
+  title: string;
+  author: string;
+  readingLevel: string;
+  coverPhotoURL: string;
+  addBook: () => void;
+  removeBook?: () => void;
+  isAllBooks: boolean;
+};
+
+export type ButtonModel = {
+  bgColor: string;
+  hoverColor?: string
+  actionButton: () => void;
+  text: string
+};
