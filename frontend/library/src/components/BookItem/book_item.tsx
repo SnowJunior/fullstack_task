@@ -26,7 +26,7 @@ const BookItem = ({ book }: { book: BookModel }) => {
         }}
       >
         <CardMedia
-          sx={{ height: 200, width: '100%' }}
+          sx={{ height: 200, width: "100%" }}
           image={book.coverPhotoURL}
           title={book.title}
         />
@@ -57,12 +57,17 @@ const BookItem = ({ book }: { book: BookModel }) => {
           </CardContent>
           <CardActions>
             <div className="action_buttons">
-              <AssignButton
-                sx={{ width: "100%", padding: "10px", fontSize: "14px" }}
-                onClick={book.addBook}
-              >
-                Assign
-              </AssignButton>
+              {book.isAllBooks ? (
+                <AssignButton
+                  sx={{ width: "100%", padding: "10px", fontSize: "14px" }}
+                  onClick={book.addBook}
+                >
+                  Assign
+                </AssignButton>
+              ) : (
+                ""
+              )}
+
               {book.isAllBooks ? (
                 ""
               ) : (
