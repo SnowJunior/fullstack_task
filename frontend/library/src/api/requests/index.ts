@@ -12,10 +12,12 @@ export const GET_BOOKS = gql`
 `;
 
 export const BOOKS_QUERY = gql`
-  query Books {
+  query SearchBooks($title: String) {
     books(title: $title) {
       author
       title
+      coverPhotoURL
+      readingLevel
     }
   }
 `;

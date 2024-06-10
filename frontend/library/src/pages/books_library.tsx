@@ -9,9 +9,10 @@ import {
 import { BookModel } from "../models";
 import "./books_library.scss";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
-// import SearchQuery from "../components/Input/text_input";
 import { useState } from "react";
 import { showToast } from "../hooks/useToast";
+import useDebounce from "../hooks/useDebounce";
+import SearchQuery from "../components/Input/text_input";
 
 const BookLibrary = () => {
   const { data, loading } = useQuery(GET_BOOKS);
@@ -19,8 +20,10 @@ const BookLibrary = () => {
   const [tab, setTab] = useState<string>("all_books");
   const [addBookToList] = useMutation(ADD_BOOK_TO_LIST);
   const [removeBookFromList] = useMutation(REMOVE_BOOK_FROM_LIST);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const debouncedSearchValue = useDebounce(searchValue, 500);
 
-  const handleAddToReadingList = (book: BookModel) => {
+  const handleAddToReadingList = async (book: BookModel) => {
     try {
       if (
         addedBooks.readingList.some((b: BookModel) => b.author == book.author)
@@ -28,7 +31,7 @@ const BookLibrary = () => {
         showToast("warn", "Book is already added to reading list");
         return;
       }
-      addBookToList({
+      await addBookToList({
         variables: { author: book.author },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
@@ -39,9 +42,9 @@ const BookLibrary = () => {
     }
   };
 
-  const handleRemoveFromReadingList = (book: BookModel) => {
+  const handleRemoveFromReadingList = async (book: BookModel) => {
     try {
-      removeBookFromList({
+      await removeBookFromList({
         variables: { author: book.author },
         refetchQueries: [{ query: GET_READING_LIST }],
       });
@@ -51,15 +54,24 @@ const BookLibrary = () => {
       throw new Error(`${error}`);
     }
   };
+  const handleSearch = (searchTerm: string) => {
+    setSearchValue(searchTerm);
+  };
+  const filteredBooks = data?.books.filter((book: BookModel) =>
+  book.title.toLowerCase().includes(debouncedSearchValue.toLowerCase())
+) || []; 
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
     newAlignment: string
   ) => {
-    setTab(newAlignment);
+    if (newAlignment !== null) {
+      setTab(newAlignment);
+    }
   };
   if (loading) {
     return <div>loading</div>;
   }
+
   return (
     <Box
       width={"90%"}
@@ -68,9 +80,9 @@ const BookLibrary = () => {
       flexDirection={"column"}
       gap={"4rem"}
     >
-      {/* <Box>
-        <SearchQuery />
-      </Box> */}
+      <Box>
+        <SearchQuery placeholder="Search by title" onSearch={handleSearch} />
+      </Box>
 
       <Box>
         <ToggleButtonGroup
@@ -81,13 +93,13 @@ const BookLibrary = () => {
           aria-label="Section"
         >
           <ToggleButton value="all_books">All Books</ToggleButton>
-          <ToggleButton value="teacher">Reading List</ToggleButton>
+          <ToggleButton value="reading_list">Reading List</ToggleButton>
         </ToggleButtonGroup>
       </Box>
-      <div className="">
+      <div>
         {tab === "all_books" ? (
           <div className="books_container">
-            {data.books.map((book: BookModel, idx: number) => (
+            {filteredBooks.length > 0 ?(filteredBooks.map((book: BookModel, idx: number) => (
               <BookItem
                 key={idx}
                 book={{
@@ -101,12 +113,13 @@ const BookLibrary = () => {
                   },
                 }}
               />
-            ))}
+            ))): ('')}
           </div>
         ) : (
           <div className="books_container">
-            {addedBooks.readingList.map((book: BookModel) => (
+            {addedBooks.readingList.map((book: BookModel, index: number) => (
               <BookItem
+                key={index}
                 book={{
                   title: book.title,
                   author: book.author,

@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
       <Box
         height={"100px"}
-        width={"95%"}
+        width={"90%"}
         mx={"auto"}
         display={"flex"}
         flex-direction={"row"}
@@ -23,16 +23,6 @@ const Navbar = () => {
           alt=""
           className="navbar_image"
         />
-        {/* <Switch
-          icon={
-            mode === "dark" ? (
-              <LightModeIcon sx={{ color: deepOrange }} />
-            ) : (
-              <DarkModeIcon sx={{ color: deepOrange }} />
-            )
-          }
-          onChange={toggleColorMode}
-        /> */}
       </Box>
     </>
   );

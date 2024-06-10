@@ -28,6 +28,9 @@ const useColorMode = () => {
             default: grey[50],
           },
         },
+        typography: {
+          fontFamily: '"Mulish", san-serif',
+        },
       }),
     [mode]
   );

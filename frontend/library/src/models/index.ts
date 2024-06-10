@@ -14,3 +14,8 @@ export type ButtonModel = {
   actionButton: () => void;
   text: string
 };
+
+export interface SearchQueryProps {
+  placeholder?: string;
+  onSearch: (value: string) => void;
+}
