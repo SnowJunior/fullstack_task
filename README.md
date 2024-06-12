@@ -12,7 +12,7 @@ All assessment requirements were met and completed. These include:
 - Use of 'Mulish' font
 
 ## Extras
-- Detailed commits - Descriptive to know what was handled where
+- Detailed commits - Agile approach and pushed commits after interations of all implementations
 - Paginated the data and allowed filtering across all pages
 - Use of scss together with MUI to offer full customization and control of components
 - Ensured the application requests were type safe
