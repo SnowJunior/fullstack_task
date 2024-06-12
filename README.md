@@ -12,7 +12,9 @@ All assessment requirements were met and completed. These include:
 - Use of 'Mulish' font
 
 ## Extras
-- Detailed commits - Descriptive to know what was handled where  
+- Detailed commits - Descriptive to know what was handled where
+- Paginated the data and allowed filtering across all pages
+- Use of scss together with MUI to offer full customization and control of components
 
 ## Video Link
 As the completed solution below is the link of a small demo of the process and the application solution and output that was created
