@@ -15,6 +15,8 @@ All assessment requirements were met and completed. These include:
 - Detailed commits - Descriptive to know what was handled where
 - Paginated the data and allowed filtering across all pages
 - Use of scss together with MUI to offer full customization and control of components
+- Ensured the application requests were type safe
+- Error handling for any instance of failure of a request happening
 
 ## Video Link
 As the completed solution below is the link of a small demo of the process and the application solution and output that was created
